@@ -35,4 +35,23 @@ public class MyRESTController {
         return employee;
     }
 
+    @PostMapping()
+    public Employee add(@RequestBody Employee employee){
+        employeeService.save(employee);
+        return employee;
+    }
+
+    @PatchMapping()
+    public Employee edit(@RequestBody Employee employee){
+        employeeService.save(employee);
+        return employee;
+    }
+
+    @DeleteMapping("{id}")
+    public String delete(@PathVariable int id){
+        if (employeeService.show(id) == null) throw new NoSuchEmployeeException("There is no employee with id = "+
+                id + " in database");
+        employeeService.delete(id);
+        return "Employee with id = " + id + " was deleted";
+    }
 }
